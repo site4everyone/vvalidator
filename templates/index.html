@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First Website</title>
+    <style>
+      .container {
+        background-color: #e4e4e4;
+        width: 70%;
+        margin: 20px auto 10px auto;
+        padding: 10px 30px 10px 30px;
+        border-radius: 5px;
+      }
+      .desc {
+        padding-top: 10px;
+      }
+      .amount {
+        float: right;
+        font-weight: lighter;
+        width: 10%;
+      }
+      .head {
+        font-size: large;
+        font-weight: bold;
+      }
+      .search {
+        margin: 30px auto auto auto;
+        width: 50%;
+        text-align: center;
+      }
+      #input {
+        padding: 5px 20px 0px 10px;
+        border: #e4e4e4 solid 2px;
+        border-top: hidden;
+        border-left: hidden;
+        border-right: hidden;
+      }
+      span {
+        font-weight: bold;
+      }
+      .center {
+        text-align: center;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search">
+      <form id="form1" action="">
+        <input id="input" type="text" name="term" />
+      </form>
+      <button form="form1" type="submit" value="submit">Search</button>
+    </div>
+    <!-- output result -->
+    {% if arts|length > 0 %} {% for art in arts %}
+    <div class="container">
+      <div class="head">
+        {{art.title}}
+        <div class="amount">${{art.amount}}</div>
+      </div>
+      <div class="desc">
+        {{art.desc}}<br /><br />Incentive amount is {% if not art.status %}
+        <span style="color: red">NOT Claimed </span>{% else %}
+        <span style="color: green">Claimed </span> {% endif %}
+      </div>
+    </div>
+
+    {% endfor %} {% else %}
+    <span class="center">No matching results.</span>
+    {% endif %}
+  </body>
+</html>
